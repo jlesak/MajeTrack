@@ -37,7 +37,7 @@ export default function InvestmentsTable({ investments }: InvestmentsTableProps)
               <TableRow key={investment.name}>
                 <TableCell className="font-medium">{investment.name}</TableCell>
                 <TableCell>
-                  <Badge className={`${getBadgeColor(investment.type)} text-white`}>
+                  <Badge className={`${getBadgeColor(investment.type)} text-primary`}>
                     {investment.type}
                   </Badge>
                 </TableCell>

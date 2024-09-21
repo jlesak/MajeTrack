@@ -1,5 +1,8 @@
-import PortfolioDashboard from "./components/PortfolioDashboard";
+
+import Index from './pages/Index';
 
 export default function Home() {
-  return <PortfolioDashboard />
+    return (
+        <Index />
+    )
 }
