@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface HistoricalData {
   date: string;
@@ -36,10 +36,8 @@ export default function PortfolioChart() {
       <CardContent>
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={historicalData}>
+            <LineChart data={historicalData} xAxis={{ dataKey: 'date' }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
               <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
               <Line type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} />
             </LineChart>
