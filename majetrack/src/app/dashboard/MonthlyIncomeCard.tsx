@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useState } from 'react'
+import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -9,27 +7,18 @@ import { Plus } from 'lucide-react'
 
 interface MonthlyIncomeCardProps {
   income: number;
-  setIncome: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function MonthlyIncomeCard({ income, setIncome }: MonthlyIncomeCardProps) {
-  const [showAddIncome, setShowAddIncome] = useState(false)
-  const [newIncome, setNewIncome] = useState('')
-
-  const handleAddIncome = () => {
-    if (newIncome) {
-      setIncome(income + parseFloat(newIncome))
-      setNewIncome('')
-      setShowAddIncome(false)
-    }
-  }
+export default function MonthlyIncomeCard({ income }: MonthlyIncomeCardProps) {
+  const showAddIncome = false
+  const newIncome = ''
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex justify-between items-center">
           Monthly Income
-          <Button variant="outline" size="sm" onClick={() => setShowAddIncome(true)}>
+          <Button variant="outline" size="sm" >
             <Plus className="h-4 w-4 mr-2" /> Add Income
           </Button>
         </CardTitle>
@@ -44,11 +33,10 @@ export default function MonthlyIncomeCard({ income, setIncome }: MonthlyIncomeCa
                 id="new-income"
                 type="number"
                 value={newIncome}
-                onChange={(e) => setNewIncome(e.target.value)}
                 placeholder="Enter income amount"
               />
             </div>
-            <Button onClick={handleAddIncome}>Add Income</Button>
+            <Button>Add Income</Button>
           </div>
         )}
       </CardContent>

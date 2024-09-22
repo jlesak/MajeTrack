@@ -1,8 +1,13 @@
+import { getSession } from '@auth0/nextjs-auth0';
+import LandingPage from './dashboard/LandingPage'
+import PortfolioDashboard from './dashboard/PortfolioDashboard'
+ 
+export default async function Index() {
+    const session = await getSession();
 
-import Index from './pages/Index';
-
-export default function Home() {
-    return (
-        <Index />
-    )
+    if (session?.user) {
+        return <PortfolioDashboard user={session.user} />;
+      } else {
+        return <LandingPage />;
+      }
 }
