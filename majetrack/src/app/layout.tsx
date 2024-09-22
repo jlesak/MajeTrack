@@ -1,5 +1,5 @@
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider } from "./dashboard/ThemeProvider";
 import "./globals.css";
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
         <UserProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
