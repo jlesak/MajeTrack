@@ -1,5 +1,4 @@
-import React from "react";
-import Header from "./Header";
+import Header from "../../components/Header";
 import TotalValueCard from "./TotalValueCard";
 import PortfolioChart from "./PortfolioChart";
 import InvestmentsTable from "./InvestmentsTable";
@@ -8,10 +7,12 @@ import BankAccountsCard from "./BankAccountsCard";
 import MonthlyIncomeCard from "./MonthlyIncomeCard";
 import { BankAccount, Investment } from "../types/index";
 import { Claims } from "@auth0/nextjs-auth0";
+import PortfoliosTable from "@/components/portfolio/PortfoliosTable";
 
 export default function PortfolioDashboard({ user }: Claims) {
   const investments = Array<Investment>(
     {
+      id: "1",
       name: "Stock A",
       type: "Stock",
       value: 10000,
@@ -21,8 +22,9 @@ export default function PortfolioDashboard({ user }: Claims) {
         { type: "Sell", date: "2023-01-03", price: 200, amount: 70 },
       ],
     },
-    { name: "Bond B", type: "Bond", value: 15000, growth: 3, transactions: [] },
+    { id: "2", name: "Bond B", type: "Bond", value: 15000, growth: 3, transactions: [] },
     {
+      id: "3",
       name: "Real Estate C",
       type: "Real Estate",
       value: 25000,
@@ -55,14 +57,16 @@ export default function PortfolioDashboard({ user }: Claims) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <InvestmentsTable investments={investments} />
+          <PortfoliosTable  />
           <PortfolioAllocationChart investments={investments} />
         </div>
 
+        <div className="grid gap-6 mb-8">
+          <InvestmentsTable investments={investments} />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <BankAccountsCard
-            accounts={bankAccounts}
-          />
+          <BankAccountsCard accounts={bankAccounts}  />
           <MonthlyIncomeCard
             income={monthlyIncome}
           />

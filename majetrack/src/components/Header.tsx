@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "../app/dashboard/ModeToggle";
 import { Claims } from "@auth0/nextjs-auth0";
 
 export default function Header({ user }: Claims) {

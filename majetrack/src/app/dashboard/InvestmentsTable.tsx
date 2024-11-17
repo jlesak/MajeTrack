@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import InvestmentDetails from './InvestmentDetails'
+import { useRouter } from 'next/navigation'
 import { getBadgeColor } from '../../lib/utils'
 import { Investment } from '../types/index'
 
@@ -14,7 +14,7 @@ interface InvestmentsTableProps {
 }
 
 export default function InvestmentsTable({ investments }: InvestmentsTableProps) {
-  const [selectedInvestment, setSelectedInvestment] = useState<Investment | null>(null)
+  const router = useRouter()
 
   return (
     <Card className="md:col-span-2">
@@ -46,7 +46,11 @@ export default function InvestmentsTable({ investments }: InvestmentsTableProps)
                   {investment.growth}%
                 </TableCell>
                 <TableCell>
-                  <Button variant="outline" size="sm" onClick={() => setSelectedInvestment(investment)}>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => router.push(`/investments/${investment.id}`)}
+                  >
                     View Details
                   </Button>
                 </TableCell>
@@ -54,9 +58,6 @@ export default function InvestmentsTable({ investments }: InvestmentsTableProps)
             ))}
           </TableBody>
         </Table>
-        {selectedInvestment && (
-          <InvestmentDetails investment={selectedInvestment} onClose={() => setSelectedInvestment(null)} />
-        )}
       </CardContent>
     </Card>
   )

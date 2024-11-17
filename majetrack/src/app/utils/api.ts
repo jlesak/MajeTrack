@@ -1,14 +1,15 @@
 import axios from 'axios';
+import "server-only";
+import { getAccessToken } from "@auth0/nextjs-auth0";
+
 
 const api = axios.create({
-  baseURL: 'http://localhost:5291',
+  baseURL: process.env.API_BASE_URL,
 });
 
 api.interceptors.request.use(async (config) => {
 
-  const accessTokenResponse = await fetch('/api/auth/token');
-  const accessToken = await accessTokenResponse.json();
-
+  const { accessToken } = await getAccessToken();
   console.log('api: ' + accessToken);
 
   if (accessToken) {
