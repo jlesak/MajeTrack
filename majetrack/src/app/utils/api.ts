@@ -10,6 +10,7 @@ const api = axios.create({
 api.interceptors.request.use(async (config) => {
 
   const { accessToken } = await getAccessToken();
+
   console.log('api: ' + accessToken);
 
   if (accessToken) {

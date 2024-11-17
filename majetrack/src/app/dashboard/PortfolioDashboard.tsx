@@ -8,8 +8,19 @@ import MonthlyIncomeCard from "./MonthlyIncomeCard";
 import { BankAccount, Investment } from "../types/index";
 import { Claims } from "@auth0/nextjs-auth0";
 import PortfoliosTable from "@/components/portfolio/PortfoliosTable";
+import api from "../utils/api";
 
-export default function PortfolioDashboard({ user }: Claims) {
+export default async function PortfolioDashboard({ user }: Claims) {
+
+  try {
+
+    const weather = await api.get('/weatherforecast?city=London');
+    console.log('weather' + weather);
+
+  } catch (error) {
+    console.error('Error fetching weather:', error);
+  }
+  
   const investments = Array<Investment>(
     {
       id: "1",
